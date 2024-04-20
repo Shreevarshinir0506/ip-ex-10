@@ -1,0 +1,125 @@
+PROGRAM1:
+<!DOCTYPE html>
+<html>
+    <body>
+        <form action="svr1.php" method="get">
+            Grade(1-5)<input type="text" name="t1">
+            <input type="submit">
+        </form>
+    </body>
+</html>
+
+<?php
+$grade=$_GET["t1"];
+switch($grade){
+    case 1:
+        print "Your grade is:A";
+        break;
+    case 2:
+        print "Your grade is:B";
+        break;
+    case 3:
+        print "Your grade is:C";
+        break;
+    case 4:
+        print "Your grade is:D";
+        break;
+    case 5:
+        print "Your grade is:F";
+        break;
+}
+?>
+
+
+PROGRAM 2:
+<!DOCTYPE html>
+<html>
+    <body>
+        <form action="svr2.php" method="get">
+            NUMBER:<input type="number" name="t2">
+            <br>
+            <input type="submit">
+        </form>
+    </body>
+</html>
+
+<?php
+$number=$_GET["t2"];
+$sum=0;
+$num;
+while($number>0){
+    $num=$number%10;
+    $sum=$sum+$num;
+    $number=$number/10;
+}
+print "The sum of the digits is:$sum "
+?>
+
+
+PROGRAM3:
+<?php
+class Vehicle {
+    private $make;
+    private $model;
+    private $year;
+    private $rentalPrice;
+    private $available;
+    public function __construct($make, $model, $year, $rentalPrice) {
+        $this->make = $make;
+        $this->model = $model;
+        $this->year = $year;
+        $this->rentalPrice = $rentalPrice;
+        $this->available = true;
+    }
+    public function rent() {
+        if ($this->available) {
+            $this->available = false;
+            echo "--Vehicle rented--<br>\n";
+        } else {
+            echo "Vehicle is not available for rent.\n";
+        }
+    }
+    public function returnVehicle() {
+        if (!$this->available) {
+            $this->available = true;
+            echo "--Vehicle returned--\n";
+        } else {
+            echo "Vehicle is already available.\n";
+        }
+    }
+    public function calculateRentalFee($days) {
+        return $this->rentalPrice * $days;
+    }
+    public function isAvailable() {
+        return $this->available;
+    }
+    public function getMake() {
+        return $this->make;
+    }
+    public function setMake($make) {
+        $this->make = $make;
+    }
+    public function getModel() {
+        return $this->model;
+    }
+    public function setModel($model) {
+        $this->model = $model;
+    }
+    public function getYear() {
+        return $this->year;
+    }
+    public function setYear($year) {
+        $this->year = $year;
+    }
+    public function getRentalPrice() {
+        return $this->rentalPrice;
+    }
+    public function setRentalPrice($rentalPrice) {
+        $this->rentalPrice = $rentalPrice;
+    }
+}
+$vehicle = new Vehicle("Toyota", "Camry", 2020, 50);
+$vehicle->rent();
+echo "Rental fee for 5 days: $" . $vehicle->calculateRentalFee(5) . "\n<br>";
+$vehicle->returnVehicle();
+?>
